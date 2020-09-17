@@ -23,6 +23,7 @@ class RNSiriWaveView extends Component {
     amplitude: PropTypes.number,
     density: PropTypes.number,
     phaseShift: PropTypes.number,
+    decibels: PropTypes.number,
     colors: PropTypes.array,
 
     type: PropTypes.number,
@@ -44,6 +45,7 @@ class RNSiriWaveView extends Component {
     amplitude: 0.5,
     density: 5,
     phaseShift: -0.15,
+    decibels: 0.1,
     intensity: 0.3,
     colors: ["#2085fc", "#5efca9", "#fd4767"],
 
@@ -66,6 +68,7 @@ class RNSiriWaveView extends Component {
       amplitude,
       density,
       phaseShift,
+      decibels,
       intensity,
       colors,
       type,
@@ -92,6 +95,7 @@ class RNSiriWaveView extends Component {
       amplitude={amplitude}
       density={density}
       phaseShift={phaseShift}
+      decibels={decibels}
       intensity={intensity}
       colors={colors}
       type={type}

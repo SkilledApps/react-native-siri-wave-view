@@ -9,5 +9,7 @@
 
 @interface RNSiriWaveView : RCTViewManager
 
+@property (nonatomic, assign) CGFloat decibels;
+
 @end
   

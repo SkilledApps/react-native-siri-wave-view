@@ -15,8 +15,12 @@ RCT_EXPORT_MODULE()
 - (UIView *)view {
     SCSiriWaveformView *siriWave = [[SCSiriWaveformView alloc] init];
     waveTimer = NULL;
-
+    self.decibels = .1;
     return siriWave;
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(decibels, NSNumber *, SCSiriWaveformView) {
+    self.decibels = [json floatValue];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(size, NSDictonary *, SCSiriWaveformView) {
@@ -90,7 +94,7 @@ RCT_CUSTOM_VIEW_PROPERTY(stopAnimation, bool, SCSiriWaveformView) {
 -(void)targetMethod:(NSTimer *)timer  {
     SCSiriWaveformView *siriWave = [timer userInfo];
 
-    [siriWave updateWithLevel: [self _normalizedPowerLevelFromDecibels: .1]];
+    [siriWave updateWithLevel: [self _normalizedPowerLevelFromDecibels: self.decibels]];
 }
 
 - (CGFloat)_normalizedPowerLevelFromDecibels:(CGFloat)decibels {
