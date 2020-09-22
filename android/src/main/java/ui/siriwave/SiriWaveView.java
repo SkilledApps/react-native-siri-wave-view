@@ -1,4 +1,4 @@
-package com.alex.siriwaveview;
+package ui.siriwave;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -27,7 +27,7 @@ public class SiriWaveView extends View {
     public int waveColor;
     public float phase;
     public float amplitude;
-    public float level = 1.0f;
+    public float level = 0.1f;
 
     ObjectAnimator mAmplitudeAnimator;
 
@@ -50,15 +50,15 @@ public class SiriWaveView extends View {
     }
 
     public void init(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, com.alex.siriwaveview.R.styleable.SiriWaveView);
-        frequency = a.getFloat(com.alex.siriwaveview.R.styleable.SiriWaveView_waveFrequency, frequency);
-        IdleAmplitude = a.getFloat(com.alex.siriwaveview.R.styleable.SiriWaveView_waveIdleAmplitude, IdleAmplitude);
-        phaseShift = a.getFloat(com.alex.siriwaveview.R.styleable.SiriWaveView_wavePhaseShift, phaseShift);
-        initialPhaseOffset = a.getFloat(com.alex.siriwaveview.R.styleable.SiriWaveView_waveInitialPhaseOffset, initialPhaseOffset);
-        waveHeight = a.getDimension(com.alex.siriwaveview.R.styleable.SiriWaveView_waveHeight, waveHeight);
-        waveColor = a.getColor(com.alex.siriwaveview.R.styleable.SiriWaveView_waveColor, waveColor);
-        waveVerticalPosition = a.getFloat(com.alex.siriwaveview.R.styleable.SiriWaveView_waveVerticalPosition, waveVerticalPosition);
-        waveNumber = a.getInteger(R.styleable.SiriWaveView_waveAmount, waveNumber);
+        TypedArray a = context.obtainStyledAttributes(attrs, ui.siriwave.R.styleable.SiriWaveView);
+        frequency = a.getFloat(ui.siriwave.R.styleable.SiriWaveView_waveFrequency, frequency);
+        IdleAmplitude = a.getFloat(ui.siriwave.R.styleable.SiriWaveView_waveIdleAmplitude, IdleAmplitude);
+        phaseShift = a.getFloat(ui.siriwave.R.styleable.SiriWaveView_wavePhaseShift, phaseShift);
+        initialPhaseOffset = a.getFloat(ui.siriwave.R.styleable.SiriWaveView_waveInitialPhaseOffset, initialPhaseOffset);
+        waveHeight = a.getDimension(ui.siriwave.R.styleable.SiriWaveView_waveHeight, waveHeight);
+        waveColor = a.getColor(ui.siriwave.R.styleable.SiriWaveView_waveColor, waveColor);
+        waveVerticalPosition = a.getFloat(ui.siriwave.R.styleable.SiriWaveView_waveVerticalPosition, waveVerticalPosition);
+        waveNumber = a.getInteger(ui.siriwave.R.styleable.SiriWaveView_waveAmount, waveNumber);
 
         mPath = new Path();
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -123,6 +123,11 @@ public class SiriWaveView extends View {
 
     private void setAmplitude(float amplitude) {
         this.amplitude = amplitude;
+        invalidate();
+    }
+
+    public void setDecibels(float decibels) {
+        this.level = decibels;
         invalidate();
     }
 
